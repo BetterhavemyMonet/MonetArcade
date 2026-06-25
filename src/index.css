@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Monet Arcade — Futuristic Neon Design System
+   All colors MUST be HSL. */
+
+@layer base {
+  :root {
+    /* Core surfaces */
+    --background: 222 47% 5%;
+    --foreground: 180 30% 96%;
+
+    --card: 222 45% 8%;
+    --card-foreground: 180 30% 96%;
+
+    --popover: 222 45% 8%;
+    --popover-foreground: 180 30% 96%;
+
+    /* Neon brand palette */
+    --primary: 174 100% 50%;          /* teal */
+    --primary-foreground: 222 47% 5%;
+
+    --secondary: 217 100% 60%;        /* electric blue */
+    --secondary-foreground: 222 47% 5%;
+
+    --accent: 142 90% 55%;            /* neon green */
+    --accent-foreground: 222 47% 5%;
+
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20% 70%;
+
+    --destructive: 0 90% 60%;
+    --destructive-foreground: 180 30% 96%;
+
+    --border: 217 40% 18%;
+    --input: 217 40% 18%;
+    --ring: 174 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Neon accents */
+    --neon-teal: 174 100% 50%;
+    --neon-blue: 217 100% 60%;
+    --neon-green: 142 90% 55%;
+    --neon-magenta: 320 100% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--neon-teal)), hsl(var(--neon-blue)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--neon-green)), hsl(var(--neon-teal)));
+    --gradient-hero: radial-gradient(ellipse at top, hsl(217 100% 20% / 0.5), transparent 60%),
+                     radial-gradient(ellipse at bottom right, hsl(174 100% 25% / 0.4), transparent 60%),
+                     linear-gradient(180deg, hsl(222 47% 5%), hsl(222 60% 3%));
+    --gradient-card: linear-gradient(160deg, hsl(222 45% 10%), hsl(222 50% 6%));
+
+    /* Glows / shadows */
+    --glow-teal: 0 0 24px hsl(var(--neon-teal) / 0.45), 0 0 64px hsl(var(--neon-teal) / 0.2);
+    --glow-blue: 0 0 24px hsl(var(--neon-blue) / 0.45), 0 0 64px hsl(var(--neon-blue) / 0.2);
+    --glow-green: 0 0 24px hsl(var(--neon-green) / 0.45), 0 0 64px hsl(var(--neon-green) / 0.2);
+    --shadow-elevated: 0 20px 60px -20px hsl(var(--neon-teal) / 0.3);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: box-shadow 0.4s ease, transform 0.3s ease;
+
+    --sidebar-background: 222 47% 5%;
+    --sidebar-foreground: 180 30% 96%;
+    --sidebar-primary: 174 100% 50%;
+    --sidebar-primary-foreground: 222 47% 5%;
+    --sidebar-accent: 222 30% 14%;
+    --sidebar-accent-foreground: 180 30% 96%;
+    --sidebar-border: 217 40% 18%;
+    --sidebar-ring: 174 100% 50%;
+  }
+
+  .dark { /* same — already dark by default */ }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    background: var(--gradient-hero);
+    background-attachment: fixed;
+    font-family: 'Rajdhani', 'Inter', system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    letter-spacing: 0.02em;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+@layer components {
+  .neon-text-teal { color: hsl(var(--neon-teal)); text-shadow: 0 0 12px hsl(var(--neon-teal) / 0.7); }
+  .neon-text-blue { color: hsl(var(--neon-blue)); text-shadow: 0 0 12px hsl(var(--neon-blue) / 0.7); }
+  .neon-text-green { color: hsl(var(--neon-green)); text-shadow: 0 0 12px hsl(var(--neon-green) / 0.7); }
+
+  .neon-border {
+    border: 1px solid hsl(var(--neon-teal) / 0.5);
+    box-shadow: inset 0 0 16px hsl(var(--neon-teal) / 0.08), 0 0 16px hsl(var(--neon-teal) / 0.15);
+  }
+
+  .glass-panel {
+    background: var(--gradient-card);
+    border: 1px solid hsl(var(--border));
+    backdrop-filter: blur(10px);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--neon-teal) / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--neon-teal) / 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .hover-glow {
+    transition: var(--transition-glow);
+  }
+  .hover-glow:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--glow-teal);
+    border-color: hsl(var(--neon-teal));
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-accent {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-gradient-primary { background: var(--gradient-primary); }
+  .bg-gradient-accent { background: var(--gradient-accent); }
+  .shadow-glow-teal { box-shadow: var(--glow-teal); }
+  .shadow-glow-blue { box-shadow: var(--glow-blue); }
+  .shadow-glow-green { box-shadow: var(--glow-green); }
+}
