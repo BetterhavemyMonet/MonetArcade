@@ -1,3 +1,17 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+set -e
+
+echo "🎮 Rebuilding MonetArcade package setup..."
+
+cd ~/MonetArcade
+
+echo "📦 Backing up current package.json..."
+cp package.json package.json.backup
+
+echo "📝 Writing clean package.json..."
+
+cat > package.json <<'EOF'
 {
   "name": "monet-arcade",
   "private": true,
@@ -30,3 +44,17 @@
     "vite": "^5.4.19"
   }
 }
+EOF
+
+echo "🧹 Removing old dependencies..."
+rm -rf node_modules
+rm -f package-lock.json
+
+echo "📦 Installing clean dependencies..."
+npm install --legacy-peer-deps
+
+echo "🔍 Checking Vite..."
+npm ls vite @vitejs/plugin-react
+
+echo "🚀 Starting MonetArcade..."
+npm run dev
