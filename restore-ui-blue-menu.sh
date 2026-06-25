@@ -1,3 +1,42 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -e
+
+cd ~/MonetArcade || exit 1
+
+echo "🎮 Restoring BLUE GAME MENU UI..."
+
+mkdir -p src/data
+
+cat > src/data/games.ts << 'EOT'
+export const games = [
+  {
+    id: "mario",
+    title: "Monet Mario",
+    image: "/src/assets/game-mario.jpg",
+    entryFee: 1,
+  },
+  {
+    id: "drift",
+    title: "Monet Drift",
+    image: "/src/assets/game-drift.jpg",
+    entryFee: 1,
+  },
+  {
+    id: "shooter",
+    title: "Monet Shooter",
+    image: "/src/assets/game-shooter.jpg",
+    entryFee: 1,
+  },
+  {
+    id: "toads",
+    title: "Token Toads",
+    image: "/src/assets/game-toads.jpg",
+    entryFee: 1,
+  }
+];
+EOT
+
+cat > src/pages/Games.tsx << 'EOT'
 import { games } from "@/data/games";
 
 export default function Games() {
@@ -21,3 +60,7 @@ export default function Games() {
     </div>
   );
 }
+EOT
+
+echo "✅ Blue UI restored"
+echo "👉 run: npm run dev"
