@@ -1,61 +1,51 @@
-import drift from "@/assets/game-drift.jpg";
-import mario from "@/assets/game-mario.jpg";
-import toads from "@/assets/game-toads.jpg";
-import blocks from "@/assets/game-blocks.jpg";
-import shooter from "@/assets/game-shooter.jpg";
-import type { Game } from "@/components/GameCard";
+export interface Game {
+  id: string;
+  title: string;
+  image: string;
+  entryFee: number;
+  players: number;
+  mode: string;
+}
 
 export const games: Game[] = [
   {
-    id: "monet-drift",
-    title: "Monet Drift",
-    description: "High-octane neon street racing. Drift, boost, and outrun the grid.",
-    image: drift,
-    status: "live",
-    players: "2.4k",
-    category: "Racing",
-  },
-  {
-    id: "monet-mario",
+    id: "mario",
     title: "Monet Mario",
-    description: "Pixel-perfect platforming through neon worlds. Stomp, jump, glow.",
-    image: mario,
-    status: "live",
-    players: "1.8k",
-    category: "Platformer",
+    image: "/src/assets/game-mario.jpg",
+    entryFee: 1,
+    players: 2,
+    mode: "Platform",
   },
   {
-    id: "token-toads",
+    id: "drift",
+    title: "Monet Drift",
+    image: "/src/assets/game-drift.jpg",
+    entryFee: 1,
+    players: 2,
+    mode: "Racing",
+  },
+  {
+    id: "shooter",
+    title: "Monet Shooter",
+    image: "/src/assets/game-shooter.jpg",
+    entryFee: 1,
+    players: 4,
+    mode: "FPS",
+  },
+  {
+    id: "toads",
     title: "Token Toads",
-    description: "Collect glowing tokens with the cutest amphibians in the metaverse.",
-    image: toads,
-    status: "beta",
-    players: "920",
-    category: "Casual",
+    image: "/src/assets/game-toads.jpg",
+    entryFee: 1,
+    players: 3,
+    mode: "Arcade",
   },
   {
-    id: "neon-blocks",
-    title: "Neon Blocks",
-    description: "A Tetris-style descent into pure geometric flow state.",
-    image: blocks,
-    status: "live",
-    players: "3.1k",
-    category: "Puzzle",
-  },
-  {
-    id: "void-runner",
-    title: "Void Runner",
-    description: "Blast through neon nebulas in this retro arcade shooter.",
-    image: shooter,
-    status: "soon",
-    category: "Shooter",
-  },
-  {
-    id: "grid-clash",
-    title: "Grid Clash",
-    description: "Real-time PvP duels on a luminous 8-bit battle grid.",
-    image: drift,
-    status: "soon",
-    category: "PvP",
+    id: "blocks",
+    title: "Monet Blocks",
+    image: "/src/assets/game-blocks.jpg",
+    entryFee: 1,
+    players: 1,
+    mode: "Puzzle",
   },
 ];
