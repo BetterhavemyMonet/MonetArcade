@@ -1,17 +1,10 @@
-import { createContext, useCallback, useContext, useState, ReactNode } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 import { connectWallet as svcConnect } from "@/services/monetArcade";
 
-interface WalletCtx {
-  wallet: string | null;
-  connecting: boolean;
-  connect: () => Promise<string>;
-  disconnect: () => void;
-}
+const Ctx = createContext(null);
 
-const Ctx = createContext<WalletCtx | undefined>(undefined);
-
-export const WalletProvider = ({ children }: { children: ReactNode }) => {
-  const [wallet, setWallet] = useState<string | null>(null);
+export const WalletProvider = ({ children }) => {
+  const [wallet, setWallet] = useState(null);
   const [connecting, setConnecting] = useState(false);
 
   const connect = useCallback(async () => {
@@ -26,7 +19,7 @@ export const WalletProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const disconnect = useCallback(() => {
-    window.solana?.disconnect?.().catch(() => {});
+    window.solana?.disconnect?.();
     setWallet(null);
   }, []);
 
@@ -39,6 +32,6 @@ export const WalletProvider = ({ children }: { children: ReactNode }) => {
 
 export const useWallet = () => {
   const ctx = useContext(Ctx);
-  if (!ctx) throw new Error("useWallet must be used within WalletProvider");
+  if (!ctx) throw new Error("Wallet missing provider");
   return ctx;
 };
